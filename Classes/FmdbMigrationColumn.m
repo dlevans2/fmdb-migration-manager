@@ -19,7 +19,7 @@
 + (FmdbMigrationColumn*)columnWithColumnName:(NSString*)columnName
                                   columnType:(NSString*)columnType
 {
-	FmdbMigrationColumn* column = [[[FmdbMigrationColumn alloc] init] autorelease];
+	FmdbMigrationColumn* column = [[FmdbMigrationColumn alloc] init];
 	column.columnName = columnName;
 	column.columnType = columnType;
 	return column;
@@ -50,12 +50,4 @@
 	return self.columnType;
 }
 
-- (void)dealloc
-{
-	[columnName_ release];
-	[columnType_ release];
-	[defaultValue_ release];
-
-	[super dealloc];
-}
 @end

@@ -9,9 +9,6 @@
 #import "FmdbMigrationManager.h"
 #import "FmdbMigration.h"
 #import "FmdbMigrationColumn.h"
-#import "FMResultSet.h"
-#import "FMDatabase.h"
-#import "FMDatabaseAdditions.h"
 
 @implementation FmdbMigrationManager
 
@@ -19,7 +16,7 @@
 
 + (id)executeForDatabasePath:(NSString *)aPath withMigrations:(NSArray *)migrations
 {
-	FmdbMigrationManager *manager = [[[self alloc] initWithDatabasePath:aPath] autorelease];
+	FmdbMigrationManager *manager = [[self alloc] initWithDatabasePath:aPath];
 	manager.migrations = migrations;
 	[manager executeMigrations];
 	return manager;
@@ -27,7 +24,7 @@
 
 + (id)executeForDatabasePath:(NSString *)aPath withMigrations:(NSArray *)migrations andMatchVersion:(NSInteger)aVersion
 {
-	FmdbMigrationManager *manager = [[[self alloc] initWithDatabasePath:aPath] autorelease];
+	FmdbMigrationManager *manager = [[self alloc] initWithDatabasePath:aPath];
 	manager.migrations = migrations;
 	[manager executeMigrationsAndMatchVersion:aVersion];
 	return manager;
@@ -127,16 +124,6 @@
 		return self;
 	}
 	return nil;
-}
-
-- (void)dealloc
-{
-	[db_ close];
-	[db_ release];
-	[migrations_ release];
-	[schemaMigrationsTableName_ release];
-
-	[super dealloc];
 }
 @end
 
