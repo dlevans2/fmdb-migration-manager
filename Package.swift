@@ -11,15 +11,15 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "FMDBMigrationManager",
-            targets: ["FMDBMigrationManager"]),
+            name: "FMDBMigrations",
+            targets: ["FMDBMigrations"]),
     ],
     dependencies: [
         .package(url: "https://github.com/ccgus/fmdb.git", .branch("master")),
     ],
     targets: [
         .target(
-            name: "FMDBMigrationManager",
+            name: "FMDBMigrations",
             dependencies: [
                 .product(name: "FMDB", package: "fmdb")
             ],
